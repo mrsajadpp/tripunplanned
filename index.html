@@ -19,6 +19,7 @@
 
     <label for="stateInput">State:</label>
     <select id="stateInput" onchange="populateDistricts()">
+        <option value="">Select</option>
         <option value="andhra_pradesh">Andhra Pradesh</option>
         <option value="arunachal_pradesh">Arunachal Pradesh</option>
         <option value="assam">Assam</option>
@@ -214,7 +215,7 @@
             var selectedState = stateSelect.options[stateSelect.selectedIndex].value;
             var selectedDistrict = districtSelect.options[districtSelect.selectedIndex].value;
 
-            if (selectedDistrict) {
+            if (selectedDistrict && selectedState) {
                 var url = `https://tripunplanned.com/${selectedState}/${selectedDistrict}/tourist-place-lists`;
             } else {
                 var url = `https://tripunplanned.com/${selectedState}/tourist-place-lists`;
@@ -227,7 +228,9 @@
             // }
 
             // Redirect to the generated URL
-            window.location.href = url;
+            if (selectedState.length > 0) {
+                window.location.href = url;
+            }
         }
     </script>
 </body>
