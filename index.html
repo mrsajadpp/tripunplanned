@@ -214,13 +214,17 @@
             var selectedState = stateSelect.options[stateSelect.selectedIndex].value;
             var selectedDistrict = districtSelect.options[districtSelect.selectedIndex].value;
 
-            var url = 'https://example.com/tourist-places/';
-
             if (selectedDistrict) {
-                url += selectedDistrict;
-            } else if (selectedState) {
-                url += selectedState;
+                var url = `https://tripunplanned.com/${selectedState}/${selectedDistrict}/tourist-place-lists`;
+            } else {
+                var url = `https://tripunplanned.com/${selectedState}/tourist-place-lists`;
             }
+
+            // if (selectedDistrict) {
+            //     url += selectedDistrict;
+            // } else if (selectedState) {
+            //     url += selectedState;
+            // }
 
             // Redirect to the generated URL
             window.location.href = url;
