@@ -1,0 +1,409 @@
+<?php
+/**
+ * The main template file.
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package Astra
+ * @since 1.0.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+get_header(); ?>
+<?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
+
+	<?php get_sidebar(); ?>
+
+<?php endif ?>
+	<div id="primary" <?php astra_primary_class(); ?>>
+<!-- 	Location	 -->
+		<style>
+		.body-co {
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+			padding: 60px;
+/*     height: 100vh; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    background-image: url('https://i.postimg.cc/Wph5Tsx0/austin-ban-ju-Hay-Wuaao-Q-unsplash.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+/*     background-attachment: fixed; */
+			padding-left: 0px;
+    padding-right: 0px;
+			border-radius: 8px;
+			margin-bottom: 20px;
+}
+
+.content-container {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.content-container .titilebox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.content-container .titilebox h2 {
+    margin: 1.0px;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.input-boxes {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* .input-box input {
+    width: 100%;
+    padding: 10px;
+} */
+
+.input-box select {
+    width: 100%;
+	height: 50px;
+    padding: 15px;
+    border: solid;
+	border-image-width: 3px;
+/* 	#036cd2 */
+	border-image-source: url('https://i.postimg.cc/Wph5Tsx0/austin-ban-ju-Hay-Wuaao-Q-unsplash.jpg');
+	border-image-slice: 100;
+    background: transparent;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-box span {
+    position: absolute;
+    left: 10px;
+    top: -11px;
+    padding: 0 10px;
+    pointer-events: none;
+    color: #036cd2;
+    background: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.input-box button {
+    width: 100%;
+	height: 50px;
+    text-transform: uppercase;
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    background: #036cd2;
+    color: #fff;
+/*     border: 1px solid blue; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .input-boxes {
+        flex-direction: row;
+    }
+
+    .input-box {
+        margin-top: 0px;
+        margin: 15px;
+    }
+}
+		</style>
+		<div class='body-co'>
+			<div class="content-container">
+        <div class="titilebox">
+            <h2>PLAN YOUR TRIPS</h2>
+        </div>
+        <div class="input-boxes">
+            <div class="input-box">
+                <select name="" id="countryInput" disabled>
+                    <option value="india">India</option>
+                </select>
+                <span>Country</span>
+            </div>
+
+            <div class="input-box">
+                <select id="stateInput" onchange="populateDistricts()">
+                    <option value="">Select</option>
+                    <option value="andhra_pradesh">Andhra Pradesh</option>
+                    <option value="arunachal_pradesh">Arunachal Pradesh</option>
+                    <option value="assam">Assam</option>
+                    <option value="bihar">Bihar</option>
+                    <option value="chhattisgarh">Chhattisgarh</option>
+                    <option value="goa">Goa</option>
+                    <option value="gujarat">Gujarat</option>
+                    <option value="haryana">Haryana</option>
+                    <option value="himachal_pradesh">Himachal Pradesh</option>
+                    <option value="jammu_kashmir">Jammu and Kashmir</option>
+                    <option value="jharkhand">Jharkhand</option>
+                    <option value="karnataka">Karnataka</option>
+                    <option value="kerala">Kerala</option>
+                    <option value="madhya_pradesh">Madhya Pradesh</option>
+                    <option value="maharashtra">Maharashtra</option>
+                    <option value="manipur">Manipur</option>
+                    <option value="meghalaya">Meghalaya</option>
+                    <option value="mizoram">Mizoram</option>
+                    <option value="nagaland">Nagaland</option>
+                    <option value="odisha">Odisha</option>
+                    <option value="punjab">Punjab</option>
+                    <option value="rajasthan">Rajasthan</option>
+                    <option value="sikkim">Sikkim</option>
+                    <option value="tamil_nadu">Tamil Nadu</option>
+                    <option value="telangana">Telangana</option>
+                    <option value="tripura">Tripura</option>
+                    <option value="uttar_pradesh">Uttar Pradesh</option>
+                    <option value="uttarakhand">Uttarakhand</option>
+                    <option value="west_bengal">West Bengal</option>
+                </select>
+                <span>State</span>
+            </div>
+
+            <div class="input-box">
+                <select id="districtInput" disabled="true">
+                    <option value="">Not Selected</option>
+                    <!-- District options will be dynamically populated based on the selected state -->
+                </select>
+                <span>District</span>
+            </div>
+
+            <div class="input-box">
+                <button onclick="redirectToTouristPlaces()">Go
+<!-- 				&nbsp; -->
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #fff;"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>
+				</button>
+            </div>
+        </div>
+    </div>
+		</div>
+
+    <script>
+        function populateDistricts() {
+            var stateSelect = document.getElementById('stateInput');
+            var districtSelect = document.getElementById('districtInput');
+
+            // Clear previous options
+            districtSelect.innerHTML = '';
+
+            // Get selected state
+            var selectedState = stateSelect.options[stateSelect.selectedIndex].value;
+
+            // Add districts based on the selected state
+            switch (selectedState) {
+                case 'andhra_pradesh':
+                    addDistricts(districtSelect, ['Anantapur', 'Chittoor', 'East Godavari', 'Guntur', 'Krishna', 'Kurnool', 'Prakasam', 'Srikakulam', 'Visakhapatnam', 'Vizianagaram', 'West Godavari', 'YSR Kadapa']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'arunachal_pradesh':
+                    addDistricts(districtSelect, ['Tawang', 'West Kameng', 'East Kameng', 'Papum Pare', 'Kurung Kumey', 'Kra Daadi', 'Lower Subansiri', 'Upper Subansiri', 'West Siang', 'East Siang', 'Siang', 'Upper Siang', 'Lower Siang', 'Lower Dibang Valley', 'Dibang Valley', 'Anjaw', 'Lohit', 'Namsai', 'Changlang', 'Tirap', 'Longding']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'assam':
+                    addDistricts(districtSelect, ['Baksa', 'Barpeta', 'Biswanath', 'Bongaigaon', 'Cachar', 'Charaideo', 'Chirang', 'Darrang', 'Dhemaji', 'Dhubri', 'Dibrugarh', 'Dima Hasao', 'Goalpara', 'Golaghat', 'Hailakandi', 'Hojai', 'Jorhat', 'Kamrup', 'Kamrup Metropolitan', 'Karbi Anglong', 'Karimganj', 'Kokrajhar', 'Lakhimpur', 'Majuli', 'Morigaon', 'Nagaon', 'Nalbari', 'Sivasagar', 'Sonitpur', 'South Salmara-Mankachar', 'Tinsukia', 'Udalguri', 'West Karbi Anglong']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'bihar':
+                    addDistricts(districtSelect, ['Araria', 'Arwal', 'Aurangabad', 'Banka', 'Begusarai', 'Bhagalpur', 'Bhojpur', 'Buxar', 'Darbhanga', 'East Champaran (Motihari)', 'Gaya', 'Gopalganj', 'Jamui', 'Jehanabad', 'Kaimur (Bhabua)', 'Katihar', 'Khagaria', 'Kishanganj', 'Lakhisarai', 'Madhepura', 'Madhubani', 'Munger (Monghyr)', 'Muzaffarpur', 'Nalanda', 'Nawada', 'Patna', 'Purnia (Purnea)', 'Rohtas', 'Saharsa', 'Samastipur', 'Saran', 'Sheikhpura', 'Sheohar', 'Sitamarhi', 'Siwan', 'Supaul', 'Vaishali', 'West Champaran']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'chhattisgarh':
+                    addDistricts(districtSelect, ['Balod', 'Baloda Bazar', 'Balrampur', 'Bastar', 'Bemetara', 'Bijapur', 'Bilaspur', 'Dantewada', 'Dhamtari', 'Durg', 'Gariaband', 'Janjgir-Champa', 'Jashpur', 'Kanker', 'Kondagaon', 'Korba', 'Koriya', 'Mahasamund', 'Mungeli', 'Narayanpur', 'Raigarh', 'Raipur', 'Rajnandgaon', 'Sukma', 'Surajpur', 'Surguja']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'goa':
+                    addDistricts(districtSelect, ['North Goa', 'South Goa']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'gujarat':
+                    addDistricts(districtSelect, ['Ahmedabad', 'Amreli', 'Anand', 'Aravalli', 'Banaskantha', 'Bharuch', 'Bhavnagar', 'Botad', 'Chhota Udaipur', 'Dahod', 'Dang', 'Devbhoomi Dwarka', 'Gandhinagar', 'Gir Somnath', 'Jamnagar', 'Junagadh', 'Kheda', 'Kutch', 'Mahisagar', 'Mehsana', 'Morbi', 'Narmada', 'Navsari', 'Panchmahal', 'Patan', 'Porbandar', 'Rajkot', 'Sabarkantha', 'Surat', 'Surendranagar', 'Tapi', 'Vadodara', 'Valsad']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'haryana':
+                    addDistricts(districtSelect, ['Ambala', 'Bhiwani', 'Charkhi Dadri', 'Faridabad', 'Fatehabad', 'Gurugram', 'Hisar', 'Jhajjar', 'Jind', 'Kaithal', 'Karnal', 'Kurukshetra', 'Mahendragarh', 'Nuh', 'Palwal', 'Panchkula', 'Panipat', 'Rewari', 'Rohtak', 'Sirsa', 'Sonipat', 'Yamunanagar']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'himachal_pradesh':
+                    addDistricts(districtSelect, ['Bilaspur', 'Chamba', 'Hamirpur', 'Kangra', 'Kinnaur', 'Kullu', 'Lahaul and Spiti', 'Mandi', 'Shimla', 'Sirmaur', 'Solan', 'Una']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'jammu_kashmir':
+                    addDistricts(districtSelect, ['Jammu', 'Samba', 'Kathua', 'Udhampur', 'Reasi', 'Ramban', 'Doda', 'Kishtwar', 'Poonch', 'Rajouri', 'Anantnag', 'Pulwama', 'Budgam', 'Srinagar', 'Baramulla', 'Bandipora', 'Kupwara', 'Ganderbal']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'jharkhand':
+                    addDistricts(districtSelect, ['Bokaro', 'Chatra', 'Deoghar', 'Dhanbad', 'Dumka', 'East Singhbhum', 'Garhwa', 'Giridih', 'Godda', 'Gumla', 'Hazaribagh', 'Jamtara', 'Khunti', 'Koderma', 'Latehar', 'Lohardaga', 'Pakur', 'Palamu', 'Ramgarh', 'Ranchi', 'Sahibganj', 'Seraikela-Kharsawan', 'Simdega', 'West Singhbhum']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'karnataka':
+                    addDistricts(districtSelect, ['Bagalkot', 'Ballari (Bellary)', 'Belagavi (Belgaum)', 'Bengaluru Rural', 'Bengaluru Urban', 'Bidar', 'Chamarajanagar', 'Chikkaballapur', 'Chikkamagaluru', 'Chitradurga', 'Dakshina Kannada', 'Davanagere', 'Dharwad', 'Gadag', 'Hassan', 'Haveri', 'Kalaburagi (Gulbarga)', 'Kodagu', 'Kolar', 'Koppal', 'Mandya', 'Mysuru (Mysore)', 'Raichur', 'Ramanagara', 'Shivamogga (Shimoga)', 'Tumakuru (Tumkur)', 'Udupi', 'Uttara Kannada (Karwar)', 'Vijayapura (Bijapur)', 'Yadgir']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'kerala':
+                    addDistricts(districtSelect, ['Alappuzha', 'Ernakulam', 'Idukki', 'Kannur', 'Kasaragod', 'Kollam', 'Kottayam', 'Kozhikode', 'Malappuram', 'Palakkad', 'Pathanamthitta', 'Thiruvananthapuram', 'Thrissur', 'Wayanad']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'madhya_pradesh':
+                    addDistricts(districtSelect, ['Agar Malwa', 'Alirajpur', 'Anuppur', 'Ashoknagar', 'Balaghat', 'Barwani', 'Betul', 'Bhind', 'Bhopal', 'Burhanpur', 'Chhatarpur', 'Chhindwara', 'Damoh', 'Datia', 'Dewas', 'Dhar', 'Dindori', 'Guna', 'Gwalior', 'Harda', 'Hoshangabad', 'Indore', 'Jabalpur', 'Jhabua', 'Katni', 'Khandwa', 'Khargone', 'Mandla', 'Mandsaur', 'Morena', 'Narsinghpur', 'Neemuch', 'Panna', 'Raisen', 'Rajgarh', 'Ratlam', 'Rewa', 'Sagar', 'Satna', 'Sehore', 'Seoni', 'Shahdol', 'Shajapur', 'Sheopur', 'Shivpuri', 'Sidhi', 'Singrauli', 'Tikamgarh', 'Ujjain', 'Umaria', 'Vidisha']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'maharashtra':
+                    addDistricts(districtSelect, ['Ahmednagar', 'Akola', 'Amravati', 'Aurangabad', 'Beed', 'Bhandara', 'Buldhana', 'Chandrapur', 'Dhule', 'Gadchiroli', 'Gondia', 'Hingoli', 'Jalgaon', 'Jalna', 'Kolhapur', 'Latur', 'Mumbai City', 'Mumbai Suburban', 'Nagpur', 'Nanded', 'Nandurbar', 'Nashik', 'Osmanabad', 'Palghar', 'Parbhani', 'Pune', 'Raigad', 'Ratnagiri', 'Sangli', 'Satara', 'Sindhudurg', 'Solapur', 'Thane', 'Wardha', 'Washim', 'Yavatmal']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'manipur':
+                    addDistricts(districtSelect, ['Bishnupur', 'Chandel', 'Churachandpur', 'Imphal East', 'Imphal West', 'Jiribam', 'Kakching', 'Kamjong', 'Kangpokpi', 'Noney', 'Pherzawl', 'Senapati', 'Tamenglong', 'Tengnoupal', 'Thoubal', 'Ukhrul']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'meghalaya':
+                    addDistricts(districtSelect, ['East Garo Hills', 'East Jaintia Hills', 'East Khasi Hills', 'North Garo Hills', 'Ri-Bhoi', 'South Garo Hills', 'South West Garo Hills', 'South West Khasi Hills', 'West Garo Hills', 'West Jaintia Hills', 'West Khasi Hills']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'mizoram':
+                    addDistricts(districtSelect, ['Aizawl', 'Champhai', 'Hnahthial', 'Khawzawl', 'Kolasib', 'Lawngtlai', 'Lunglei', 'Mamit', 'Saiha', 'Saitual', 'Serchhip']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'nagaland':
+                    addDistricts(districtSelect, ['Dimapur', 'Kiphire', 'Kohima', 'Longleng', 'Mokokchung', 'Mon', 'Peren', 'Phek', 'Tuensang', 'Wokha', 'Zunheboto']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'odisha':
+                    addDistricts(districtSelect, ['Angul', 'Balangir', 'Balasore', 'Bargarh', 'Bhadrak', 'Boudh', 'Cuttack', 'Deogarh', 'Dhenkanal', 'Gajapati', 'Ganjam', 'Jagatsinghpur', 'Jajpur', 'Jharsuguda', 'Kalahandi', 'Kandhamal', 'Kendrapara', 'Kendujhar (Keonjhar)', 'Khordha', 'Koraput', 'Malkangiri', 'Mayurbhanj', 'Nabarangpur', 'Nayagarh', 'Nuapada', 'Puri', 'Rayagada', 'Sambalpur', 'Subarnapur (Sonepur)', 'Sundargarh']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'punjab':
+                    addDistricts(districtSelect, ['Amritsar', 'Barnala', 'Bathinda', 'Faridkot', 'Fatehgarh Sahib', 'Fazilka', 'Ferozepur', 'Gurdaspur', 'Hoshiarpur', 'Jalandhar', 'Kapurthala', 'Ludhiana', 'Mansa', 'Moga', 'Muktsar', 'Pathankot', 'Patiala', 'Rupnagar', 'Sahibzada Ajit Singh Nagar (Mohali)', 'Sangrur', 'Tarn Taran']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'rajasthan':
+                    addDistricts(districtSelect, ['Ajmer', 'Alwar', 'Banswara', 'Baran', 'Barmer', 'Bharatpur', 'Bhilwara', 'Bikaner', 'Bundi', 'Chittorgarh', 'Churu', 'Dausa', 'Dholpur', 'Dungarpur', 'Hanumangarh', 'Jaipur', 'Jaisalmer', 'Jalore', 'Jhalawar', 'Jhunjhunu', 'Jodhpur', 'Karauli', 'Kota', 'Nagaur', 'Pali', 'Pratapgarh', 'Rajsamand', 'Sawai Madhopur', 'Sikar', 'Sirohi', 'Sri Ganganagar', 'Tonk', 'Udaipur']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'sikkim':
+                    addDistricts(districtSelect, ['East Sikkim', 'North Sikkim', 'South Sikkim', 'West Sikkim']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'tamil_nadu':
+                    addDistricts(districtSelect, ['Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode', 'Kallakurichi', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 'Mayiladuthurai', 'Nagapattinam', 'Namakkal', 'Nilgiris', 'Perambalur', 'Pudukkottai', 'Ramanathapuram', 'Ranipet', 'Salem', 'Sivaganga', 'Tenkasi', 'Thanjavur', 'Theni', 'Thoothukudi', 'Tiruchirappalli', 'Tirunelveli', 'Tirupathur', 'Tiruppur', 'Tiruvallur', 'Tiruvannamalai', 'Tiruvarur', 'Vellore', 'Viluppuram', 'Virudhunagar']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'telangana':
+                    addDistricts(districtSelect, ['Adilabad', 'Bhadradri Kothagudem', 'Hyderabad', 'Jagtial', 'Jangaon', 'Jayashankar Bhupalpally', 'Jogulamba Gadwal', 'Kamareddy', 'Karimnagar', 'Khammam', 'Komaram Bheem', 'Mahabubabad', 'Mahbubnagar', 'Mancherial', 'Medak', 'Medchal–Malkajgiri', 'Nagarkurnool', 'Nalgonda', 'Nirmal', 'Nizamabad', 'Peddapalli', 'Rajanna Sircilla', 'Rangareddy', 'Sangareddy', 'Siddipet', 'Suryapet', 'Vikarabad', 'Wanaparthy', 'Warangal Rural', 'Warangal Urban', 'Yadadri Bhuvanagiri']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'tripura':
+                    addDistricts(districtSelect, ['Dhalai', 'Gomati', 'Khowai', 'North Tripura', 'Sepahijala', 'South Tripura', 'Unakoti', 'West Tripura']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'uttar_pradesh':
+                    addDistricts(districtSelect, ['Agra', 'Aligarh', 'Ambedkar Nagar', 'Amethi', 'Amroha', 'Auraiya', 'Azamgarh', 'Baghpat', 'Bahraich', 'Ballia', 'Balrampur', 'Banda', 'Barabanki', 'Bareilly', 'Basti', 'Bhadohi', 'Bijnor', 'Budaun', 'Bulandshahr', 'Chandauli', 'Chitrakoot', 'Deoria', 'Etah', 'Etawah', 'Farrukhabad', 'Fatehpur', 'Firozabad', 'Gautam Buddh Nagar', 'Ghaziabad', 'Ghazipur', 'Gonda', 'Gorakhpur', 'Hamirpur', 'Hapur', 'Hardoi', 'Hathras', 'Jalaun', 'Jaunpur', 'Jhansi', 'Kannauj', 'Kanpur Dehat', 'Kanpur Nagar', 'Kasganj', 'Kaushambi', 'Kushinagar', 'Lakhimpur Kheri', 'Lalitpur', 'Lucknow', 'Maharajganj', 'Mahoba', 'Mainpuri', 'Mathura', 'Mau', 'Meerut', 'Mirzapur', 'Moradabad', 'Muzaffarnagar', 'Pilibhit', 'Pratapgarh', 'Prayagraj', 'Rae Bareli', 'Rampur', 'Saharanpur', 'Sambhal', 'Sant Kabir Nagar', 'Shahjahanpur', 'Shamli', 'Shrawasti', 'Siddharthnagar', 'Sitapur', 'Sonbhadra', 'Sultanpur', 'Unnao', 'Varanasi']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'uttarakhand':
+                    addDistricts(districtSelect, ['Almora', 'Bageshwar', 'Chamoli', 'Champawat', 'Dehradun', 'Haridwar', 'Nainital', 'Pauri Garhwal', 'Pithoragarh', 'Rudraprayag', 'Tehri Garhwal', 'Udham Singh Nagar', 'Uttarkashi']);
+                    districtSelect.disabled = false;
+                    break;
+                case 'west_bengal':
+                    addDistricts(districtSelect, ['Alipurduar', 'Bankura', 'Birbhum', 'Cooch Behar', 'Dakshin Dinajpur (South Dinajpur)', 'Darjeeling', 'Hooghly', 'Howrah', 'Jalpaiguri', 'Jhargram', 'Kalimpong', 'Kolkata', 'Malda', 'Murshidabad', 'Nadia', 'North 24 Parganas', 'Paschim Medinipur (West Medinipur)', 'Paschim Burdwan (West Burdwan)', 'Purba Burdwan (East Burdwan)', 'Purba Medinipur (East Medinipur)', 'Purulia', 'South 24 Parganas', 'Uttar Dinajpur (North Dinajpur)']);
+                    districtSelect.disabled = false;
+                    break;
+
+                default:
+                addDistricts(districtSelect, ['Not Selected']);
+                    districtSelect.disabled = true;
+                    break;
+
+                // Add cases for other states
+            }
+
+
+
+            // Show district input
+            // districtSelect.style.display = 'block';
+        }
+
+        function addDistricts(selectElement, districts) {
+            for (var i = 0; i < districts.length; i++) {
+                selectElement.options.add(new Option(districts[i], districts[i].toLowerCase().replace(/\s+/g, '_')));
+            }
+        }
+
+        function redirectToTouristPlaces() {
+            var stateSelect = document.getElementById('stateInput');
+            var districtSelect = document.getElementById('districtInput');
+
+            var selectedState = stateSelect.options[stateSelect.selectedIndex].value;
+            var selectedDistrict = districtSelect.options[districtSelect.selectedIndex].value;
+
+            if (selectedDistrict && selectedState) {
+                var url = `https://tripunplanned.com/${selectedState}/${selectedDistrict}/tourist-place-lists`;
+            } else {
+                var url = `https://tripunplanned.com/${selectedState}/tourist-place-lists`;
+            }
+
+            // if (selectedDistrict) {
+            //     url += selectedDistrict;
+            // } else if (selectedState) {
+            //     url += selectedState;
+            // }
+
+            // Redirect to the generated URL
+            if (selectedState.length > 0) {
+                window.location.href = url;
+            }
+        }
+    </script>
+		
+		<?php
+		astra_primary_content_top();
+
+		astra_content_loop();
+
+		astra_pagination();
+
+		astra_primary_content_bottom();
+		?>
+	</div><!-- #primary -->
+<?php
+if ( astra_page_layout() == 'right-sidebar' ) :
+
+	get_sidebar();
+
+endif;
+
+get_footer();
