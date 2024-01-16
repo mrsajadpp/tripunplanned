@@ -1,0 +1,78 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    background-image: url('https://i.postimg.cc/Wph5Tsx0/austin-ban-ju-Hay-Wuaao-Q-unsplash.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.input-boxes {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* .input-box input {
+    width: 100%;
+    padding: 10px;
+} */
+
+.input-box select {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid blue;
+    background: transparent;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-box span {
+    position: absolute;
+    left: 10px;
+    top: -6px;
+    padding: 0 10px;
+    pointer-events: none;
+    color: blue;
+    background: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.input-box button {
+    width: 100%;
+    text-transform: uppercase;
+    padding: 15px;
+    border-radius: 5px;
+    border: none;
+    background: blue;
+    color: #fff;
+}
+
+@media (min-width: 768px) {
+    .input-boxes {
+        flex-direction: row;
+    }
+    .input-box {
+        margin-top: 0px;
+        margin: 10px;
+    }
+}

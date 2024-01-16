@@ -10,54 +10,67 @@
             display: none;
         }
     </style> -->
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-    <label for="countryInput">Country:</label>
-    <input type="text" id="countryInput" value="India" disabled>
+    <div class="input-boxes">
+        <div class="input-box">
+            <select name="" id="countryInput" disabled>
+                <option value="india">India</option>
+            </select>
+            <span>Country</span>
+        </div>
 
-    <label for="stateInput">State:</label>
-    <select id="stateInput" onchange="populateDistricts()">
-        <option value="">Select</option>
-        <option value="andhra_pradesh">Andhra Pradesh</option>
-        <option value="arunachal_pradesh">Arunachal Pradesh</option>
-        <option value="assam">Assam</option>
-        <option value="bihar">Bihar</option>
-        <option value="chhattisgarh">Chhattisgarh</option>
-        <option value="goa">Goa</option>
-        <option value="gujarat">Gujarat</option>
-        <option value="haryana">Haryana</option>
-        <option value="himachal_pradesh">Himachal Pradesh</option>
-        <option value="jammu_kashmir">Jammu and Kashmir</option>
-        <option value="jharkhand">Jharkhand</option>
-        <option value="karnataka">Karnataka</option>
-        <option value="kerala">Kerala</option>
-        <option value="madhya_pradesh">Madhya Pradesh</option>
-        <option value="maharashtra">Maharashtra</option>
-        <option value="manipur">Manipur</option>
-        <option value="meghalaya">Meghalaya</option>
-        <option value="mizoram">Mizoram</option>
-        <option value="nagaland">Nagaland</option>
-        <option value="odisha">Odisha</option>
-        <option value="punjab">Punjab</option>
-        <option value="rajasthan">Rajasthan</option>
-        <option value="sikkim">Sikkim</option>
-        <option value="tamil_nadu">Tamil Nadu</option>
-        <option value="telangana">Telangana</option>
-        <option value="tripura">Tripura</option>
-        <option value="uttar_pradesh">Uttar Pradesh</option>
-        <option value="uttarakhand">Uttarakhand</option>
-        <option value="west_bengal">West Bengal</option>
-    </select>
+        <div class="input-box">
+            <select id="stateInput" onchange="populateDistricts()">
+                <option value="">Select</option>
+                <option value="andhra_pradesh">Andhra Pradesh</option>
+                <option value="arunachal_pradesh">Arunachal Pradesh</option>
+                <option value="assam">Assam</option>
+                <option value="bihar">Bihar</option>
+                <option value="chhattisgarh">Chhattisgarh</option>
+                <option value="goa">Goa</option>
+                <option value="gujarat">Gujarat</option>
+                <option value="haryana">Haryana</option>
+                <option value="himachal_pradesh">Himachal Pradesh</option>
+                <option value="jammu_kashmir">Jammu and Kashmir</option>
+                <option value="jharkhand">Jharkhand</option>
+                <option value="karnataka">Karnataka</option>
+                <option value="kerala">Kerala</option>
+                <option value="madhya_pradesh">Madhya Pradesh</option>
+                <option value="maharashtra">Maharashtra</option>
+                <option value="manipur">Manipur</option>
+                <option value="meghalaya">Meghalaya</option>
+                <option value="mizoram">Mizoram</option>
+                <option value="nagaland">Nagaland</option>
+                <option value="odisha">Odisha</option>
+                <option value="punjab">Punjab</option>
+                <option value="rajasthan">Rajasthan</option>
+                <option value="sikkim">Sikkim</option>
+                <option value="tamil_nadu">Tamil Nadu</option>
+                <option value="telangana">Telangana</option>
+                <option value="tripura">Tripura</option>
+                <option value="uttar_pradesh">Uttar Pradesh</option>
+                <option value="uttarakhand">Uttarakhand</option>
+                <option value="west_bengal">West Bengal</option>
+            </select>
+            <span>State</span>
+        </div>
 
-    <label for="districtInput">District:</label>
-    <select id="districtInput" disabled="true">
-        <option value="">Not Selected</option>
-        <!-- District options will be dynamically populated based on the selected state -->
-    </select>
+        <div class="input-box">
+            <select id="districtInput" disabled="true">
+                <option value="">Not Selected</option>
+                <!-- District options will be dynamically populated based on the selected state -->
+            </select>
+            <span>District</span>
+        </div>
 
-    <button onclick="redirectToTouristPlaces()">Go</button>
+        <div class="input-box">
+            <button onclick="redirectToTouristPlaces()">Go</button>
+        </div>
+    </div>
 
     <script>
         function populateDistricts() {
@@ -190,7 +203,7 @@
                     break;
 
                 default:
-                addDistricts(districtSelect, ['Not Selected']);
+                    addDistricts(districtSelect, ['Not Selected']);
                     districtSelect.disabled = true;
                     break;
 
